@@ -73,6 +73,17 @@ module Enumerable
         return res
     end
 
+    def my_map_proc(&proc)
+        i = 0
+        res = []
+        while i < self.length
+            j = proc.call(self[i])
+            res.push(j)
+            i += 1
+        end
+        return res
+    end
+
     def my_inject(res = 0)
         i = 0
         while i < self.length
@@ -122,6 +133,12 @@ puts "******* my_map *******"
 
 new_arr2 = arr.my_map { |i| i*5 }
 puts new_arr2
+
+puts "******* my_map_proc *******"
+
+new_proc = Proc.new { |i| i * 100 }
+new_arr3 = arr.my_map_proc(&new_proc)
+puts new_arr3
 
 puts "******* my_inject *******"
 
